@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #F3F0E7;
+}
+
+.font-display {
+  font-family: 'Fraunces', serif;
+}
+
+/* Perforated ticket edge on cards */
+.ticket-edge {
+  position: relative;
+}
+
+/* Passport-style completion stamp */
+.stamp {
+  border: 3px double #8FBF9F;
+  color: #8FBF9F;
+  border-radius: 9999px;
+  transform: rotate(-9deg);
+  animation: stamp-in 0.35s ease-out;
+}
+
+@keyframes stamp-in {
+  0% {
+    transform: rotate(-9deg) scale(1.6);
+    opacity: 0;
+  }
+  60% {
+    transform: rotate(-9deg) scale(0.9);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(-9deg) scale(1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stamp {
+    animation: none;
+  }
+}
