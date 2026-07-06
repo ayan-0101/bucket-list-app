@@ -46,7 +46,7 @@ export default function EntryGate({ onEnter }) {
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="e.g. Aisha"
+              placeholder="e.g. Khushi"
               className="w-full bg-ink border border-surfacealt rounded-lg px-4 py-3 text-parchment placeholder-muted/60 focus:outline-none focus:ring-2 focus:ring-gold"
             />
           </div>
@@ -61,7 +61,7 @@ export default function EntryGate({ onEnter }) {
                 setListId(e.target.value)
                 setMode('join')
               }}
-              placeholder="e.g. atlas-482"
+              placeholder="e.g. Ayan007"
               className="w-full bg-ink border border-surfacealt rounded-lg px-4 py-3 text-parchment placeholder-muted/60 focus:outline-none focus:ring-2 focus:ring-gold"
             />
             <p className="text-muted text-xs mt-2">
