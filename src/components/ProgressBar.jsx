@@ -1,5 +1,5 @@
 export default function ProgressBar({ total, done }) {
-  const pct = total === 0 ? 0 : Math.round((done / total) * 100)
+  const pct = total === 0 ? 0 : Math.round((done / total) * 100);
   return (
     <div>
       <div className="flex justify-between items-baseline mb-2">
@@ -15,5 +15,5 @@ export default function ProgressBar({ total, done }) {
         />
       </div>
     </div>
-  )
+  );
 }

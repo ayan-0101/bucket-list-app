@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Inter', sans-serif;
-  color: #F3F0E7;
+  font-family: "Inter", sans-serif;
+  color: #f3f0e7;
 }
 
 .font-display {
-  font-family: 'Fraunces', serif;
+  font-family: "Fraunces", serif;
 }
 
 /* Perforated ticket edge on cards */
@@ -18,8 +18,8 @@ body {
 
 /* Passport-style completion stamp */
 .stamp {
-  border: 3px double #8FBF9F;
-  color: #8FBF9F;
+  border: 3px double #8fbf9f;
+  color: #8fbf9f;
   border-radius: 9999px;
   transform: rotate(-9deg);
   animation: stamp-in 0.35s ease-out;

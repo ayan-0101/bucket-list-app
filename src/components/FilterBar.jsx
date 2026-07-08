@@ -1,9 +1,9 @@
 export const SORT_OPTIONS = [
-  ['newest', 'Newest first'],
-  ['oldest', 'Oldest first'],
-  ['az', 'Title A–Z'],
-  ['za', 'Title Z–A'],
-]
+  ["newest", "Newest first"],
+  ["oldest", "Oldest first"],
+  ["az", "Title A–Z"],
+  ["za", "Title Z–A"],
+];
 
 export default function FilterBar({
   categories,
@@ -53,15 +53,17 @@ export default function FilterBar({
 
       <div className="flex bg-surface border border-surfacealt rounded-full p-1 text-sm">
         {[
-          ['active', 'To do'],
-          ['done', 'Done'],
-          ['all', 'All'],
+          ["active", "To do"],
+          ["done", "Done"],
+          ["all", "All"],
         ].map(([val, label]) => (
           <button
             key={val}
             onClick={() => setFilterStatus(val)}
             className={`px-3 py-1.5 rounded-full transition ${
-              filterStatus === val ? 'bg-gold text-ink font-semibold' : 'text-muted hover:text-parchment'
+              filterStatus === val
+                ? "bg-gold text-ink font-semibold"
+                : "text-muted hover:text-parchment"
             }`}
           >
             {label}
@@ -69,5 +71,5 @@ export default function FilterBar({
         ))}
       </div>
     </div>
-  )
+  );
 }

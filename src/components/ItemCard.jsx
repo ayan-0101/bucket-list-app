@@ -1,24 +1,32 @@
-import { useState } from 'react'
+import { useState } from "react";
 
 function formatDate(ts) {
-  if (!ts?.toDate) return ''
-  return ts.toDate().toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })
+  if (!ts?.toDate) return "";
+  return ts
+    .toDate()
+    .toLocaleDateString(undefined, {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
 }
 
 export default function ItemCard({ item, onToggle, onEdit, onDelete }) {
-  const [confirmingDelete, setConfirmingDelete] = useState(false)
+  const [confirmingDelete, setConfirmingDelete] = useState(false);
 
   return (
     <div
       className={`ticket-edge relative bg-surface border border-surfacealt rounded-2xl pl-8 pr-6 py-5 flex items-start gap-4 ${
-        item.completed ? 'opacity-70' : ''
+        item.completed ? "opacity-70" : ""
       }`}
     >
       <button
         onClick={onToggle}
-        aria-label={item.completed ? 'Mark as not done' : 'Mark as done'}
+        aria-label={item.completed ? "Mark as not done" : "Mark as done"}
         className={`mt-1 w-6 h-6 rounded-full border-2 flex-shrink-0 flex items-center justify-center transition ${
-          item.completed ? 'border-sage bg-sage/20' : 'border-muted hover:border-gold'
+          item.completed
+            ? "border-sage bg-sage/20"
+            : "border-muted hover:border-gold"
         }`}
       >
         {item.completed && <span className="text-sage text-xs">✓</span>}
@@ -26,12 +34,14 @@ export default function ItemCard({ item, onToggle, onEdit, onDelete }) {
 
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap mb-1">
-          <span className="text-xs uppercase tracking-wide text-gold">{item.category}</span>
+          <span className="text-xs uppercase tracking-wide text-gold">
+            {item.category}
+          </span>
           <span className="text-xs text-muted">&middot; {item.timeframe}</span>
         </div>
         <p
           className={`font-display text-xl text-parchment ${
-            item.completed ? 'line-through decoration-muted' : ''
+            item.completed ? "line-through decoration-muted" : ""
           }`}
         >
           {item.title}
@@ -40,7 +50,12 @@ export default function ItemCard({ item, onToggle, onEdit, onDelete }) {
         <p className="text-muted text-xs mt-2">
           Added by {item.addedBy}
           {item.completed && item.completedBy && (
-            <> &middot; completed by {item.completedBy} {formatDate(item.completedAt) && `on ${formatDate(item.completedAt)}`}</>
+            <>
+              {" "}
+              &middot; completed by {item.completedBy}{" "}
+              {formatDate(item.completedAt) &&
+                `on ${formatDate(item.completedAt)}`}
+            </>
           )}
         </p>
       </div>
@@ -84,5 +99,5 @@ export default function ItemCard({ item, onToggle, onEdit, onDelete }) {
         )}
       </div>
     </div>
-  )
+  );
 }
