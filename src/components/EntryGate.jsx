@@ -1,26 +1,35 @@
-import { useState } from 'react'
+import { useState } from "react";
 
 function randomCode() {
-  const words = ['atlas', 'ember', 'harbor', 'meadow', 'lantern', 'compass', 'tide', 'orbit']
-  const pick = words[Math.floor(Math.random() * words.length)]
-  const num = Math.floor(100 + Math.random() * 900)
-  return `${pick}-${num}`
+  const words = [
+    "atlas",
+    "ember",
+    "harbor",
+    "meadow",
+    "lantern",
+    "compass",
+    "tide",
+    "orbit",
+  ];
+  const pick = words[Math.floor(Math.random() * words.length)];
+  const num = Math.floor(100 + Math.random() * 900);
+  return `${pick}-${num}`;
 }
 
 export default function EntryGate({ onEnter }) {
-  const [listId, setListId] = useState('')
-  const [name, setName] = useState('')
-  const [mode, setMode] = useState('join') // 'join' | 'create'
+  const [listId, setListId] = useState("");
+  const [name, setName] = useState("");
+  const [mode, setMode] = useState("join"); // 'join' | 'create'
 
   function handleCreate() {
-    setListId(randomCode())
-    setMode('create')
+    setListId(randomCode());
+    setMode("create");
   }
 
   function handleSubmit(e) {
-    e.preventDefault()
-    if (!listId.trim() || !name.trim()) return
-    onEnter(listId.trim().toLowerCase(), name.trim())
+    e.preventDefault();
+    if (!listId.trim() || !name.trim()) return;
+    onEnter(listId.trim().toLowerCase(), name.trim());
   }
 
   return (
@@ -58,14 +67,14 @@ export default function EntryGate({ onEnter }) {
             <input
               value={listId}
               onChange={(e) => {
-                setListId(e.target.value)
-                setMode('join')
+                setListId(e.target.value);
+                setMode("join");
               }}
               placeholder="e.g. Ayan007"
               className="w-full bg-ink border border-surfacealt rounded-lg px-4 py-3 text-parchment placeholder-muted/60 focus:outline-none focus:ring-2 focus:ring-gold"
             />
             <p className="text-muted text-xs mt-2">
-              Both of you enter the exact same code to share one list.{' '}
+              Both of you enter the exact same code to share one list.{" "}
               <button
                 type="button"
                 onClick={handleCreate}
@@ -80,14 +89,15 @@ export default function EntryGate({ onEnter }) {
             type="submit"
             className="w-full bg-gold text-ink font-semibold rounded-lg py-3 hover:brightness-110 transition"
           >
-            {mode === 'create' ? 'Start our list' : 'Open our list'}
+            {mode === "create" ? "Start our list" : "Open our list"}
           </button>
         </form>
 
         <p className="text-center text-muted text-xs mt-6">
-          Anyone with the code can view and edit this list, so pick something only the two of you know.
+          Anyone with the code can view and edit this list, so pick something
+          only the two of you know.
         </p>
       </div>
     </div>
-  )
+  );
 }

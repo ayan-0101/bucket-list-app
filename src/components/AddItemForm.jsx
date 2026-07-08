@@ -1,32 +1,50 @@
-import { useState } from 'react'
+import { useState } from "react";
 
-const TIMEFRAMES = ['Someday', 'This year', 'Next year']
+const TIMEFRAMES = [
+  "This Month",
+  "Next few months",
+  "This year",
+  "Next year",
+  "Someday",
+];
 
-export default function AddItemForm({ categories, initial, onSubmit, onCancel }) {
-  const [title, setTitle] = useState(initial?.title || '')
-  const [category, setCategory] = useState(initial?.category || categories[0])
-  const [timeframe, setTimeframe] = useState(initial?.timeframe || TIMEFRAMES[0])
-  const [notes, setNotes] = useState(initial?.notes || '')
+export default function AddItemForm({
+  categories,
+  initial,
+  onSubmit,
+  onCancel,
+}) {
+  const [title, setTitle] = useState(initial?.title || "");
+  const [category, setCategory] = useState(initial?.category || categories[0]);
+  const [timeframe, setTimeframe] = useState(
+    initial?.timeframe || TIMEFRAMES[0],
+  );
+  const [notes, setNotes] = useState(initial?.notes || "");
 
-  const [submitting, setSubmitting] = useState(false)
+  const [submitting, setSubmitting] = useState(false);
 
   async function handleSubmit(e) {
-    e.preventDefault()
-    if (!title.trim() || submitting) return
-    setSubmitting(true)
+    e.preventDefault();
+    if (!title.trim() || submitting) return;
+    setSubmitting(true);
     try {
-      await onSubmit({ title: title.trim(), category, timeframe, notes: notes.trim() })
+      await onSubmit({
+        title: title.trim(),
+        category,
+        timeframe,
+        notes: notes.trim(),
+      });
       if (!initial) {
-        setTitle('')
-        setCategory(categories[0])
-        setTimeframe(TIMEFRAMES[0])
-        setNotes('')
+        setTitle("");
+        setCategory(categories[0]);
+        setTimeframe(TIMEFRAMES[0]);
+        setNotes("");
       }
     } catch (err) {
-      console.error('Failed to save item:', err)
-      alert('Could not save — check your connection and try again.')
+      console.error("Failed to save item:", err);
+      alert("Could not save — check your connection and try again.");
     } finally {
-      setSubmitting(false)
+      setSubmitting(false);
     }
   }
 
@@ -50,7 +68,9 @@ export default function AddItemForm({ categories, initial, onSubmit, onCancel })
 
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="block text-muted text-xs uppercase tracking-wide mb-2">Category</label>
+          <label className="block text-muted text-xs uppercase tracking-wide mb-2">
+            Category
+          </label>
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
@@ -64,7 +84,9 @@ export default function AddItemForm({ categories, initial, onSubmit, onCancel })
           </select>
         </div>
         <div>
-          <label className="block text-muted text-xs uppercase tracking-wide mb-2">When</label>
+          <label className="block text-muted text-xs uppercase tracking-wide mb-2">
+            When
+          </label>
           <select
             value={timeframe}
             onChange={(e) => setTimeframe(e.target.value)}
@@ -105,9 +127,13 @@ export default function AddItemForm({ categories, initial, onSubmit, onCancel })
           disabled={submitting}
           className="bg-gold text-ink font-semibold rounded-full px-5 py-2 text-sm hover:brightness-110 transition disabled:opacity-60"
         >
-          {submitting ? 'Saving…' : initial ? 'Save changes' : 'Add to the list'}
+          {submitting
+            ? "Saving…"
+            : initial
+              ? "Save changes"
+              : "Add to the list"}
         </button>
       </div>
     </form>
-  )
+  );
 }
